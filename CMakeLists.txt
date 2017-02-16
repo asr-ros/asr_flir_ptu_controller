@@ -15,10 +15,10 @@ find_package(Boost REQUIRED COMPONENTS
 )
 add_action_files(DIRECTORY action FILES PTUMovement.action)
 generate_messages(DEPENDENCIES actionlib_msgs sensor_msgs)
-include_directories(include deprecated/include ${catkin_INCLUDE_DIRS})
+include_directories(include  ${catkin_INCLUDE_DIRS})
 
 catkin_package(
-  INCLUDE_DIRS include deprecated/include
+  INCLUDE_DIRS include 
   CATKIN_DEPENDS roscpp sensor_msgs
   DEPENDS Boost
 )
@@ -49,7 +49,7 @@ add_dependencies(PTUControllerClient
 )
 
 add_library(PTUControllerCPP
-  deprecated/src/PTUControllerCPP.cpp
+  src/PTUController.cpp
 )
 target_link_libraries(PTUControllerCPP
   ${Boost_LIBRARIES}
