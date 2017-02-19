@@ -1,6 +1,8 @@
 #include "ptu_controller/PTUController.h"
 namespace asr_flir_ptu_controller
 {
+    const double PTUController::RAD_TO_DEG = 180.0 / M_PI;
+
     PTUController::PTUController(ros::NodeHandle& node_handle, std::string name):
         nodeHandle(node_handle),
         simpleActionServer(name, false) {

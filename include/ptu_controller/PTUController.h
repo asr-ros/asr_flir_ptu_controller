@@ -52,7 +52,7 @@ namespace asr_flir_ptu_controller
             ros::ServiceClient alive;
             sensor_msgs::JointState stateCommandMessage;
 
-            static const double RAD_TO_DEG = 180.0 / M_PI;
+            static const double RAD_TO_DEG;
 
             double current_pan;
             double desired_pan;
