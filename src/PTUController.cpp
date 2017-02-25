@@ -22,8 +22,8 @@ namespace asr_flir_ptu_controller
         stateCommandMessage.velocity.push_back(0);
         lastStateTime = ros::Time::now();
         simpleActionServer.start();
-        validate_client= nodeHandle.serviceClient<asr_flir_ptu_driver::Validate>("/validation_service");
-        alive = nodeHandle.serviceClient<std_srvs::Empty>("/alive_service", true);
+        validate_client= nodeHandle.serviceClient<asr_flir_ptu_driver::Validate>(validation_service);
+        alive = nodeHandle.serviceClient<std_srvs::Empty>(alive_service, true);
         seq_num == 0;
     }
 
@@ -161,6 +161,8 @@ namespace asr_flir_ptu_controller
         nodeHandle.getParam("tolerance", tolerance);
         nodeHandle.getParam("topicName", topicName);
         nodeHandle.getParam("commandTopicName", commandTopicName);
+        nodeHandle.getParam("serviceValidation", validation_service);
+        nodeHandle.getParam("serviceAlive", alive_service);
     }
     double PTUController::getMaximumPan(){
         return max_pan;

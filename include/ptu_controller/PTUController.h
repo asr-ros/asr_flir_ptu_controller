@@ -72,6 +72,8 @@ namespace asr_flir_ptu_controller
             std::vector< std::map< std::string, double> > forbiddenAreas;
             std::string topicName;
             std::string commandTopicName;
+            std::string validation_service;
+            std::string alive_service;
             actionlib::SimpleActionServer<asr_flir_ptu_controller::PTUMovementAction> simpleActionServer;
             asr_flir_ptu_controller::PTUMovementFeedback simpleActionServerFeedback;
             asr_flir_ptu_controller::PTUMovementResult simpleActionServerResult;
