@@ -1,9 +1,9 @@
 timeToWait:         0.5
 tolerance:          0.1
 maxSteps:           1000
-topicName:          /ptu_driver/state_cmd
-commandTopicName:   /ptu_driver/ptu_state
-serviceValidation:  /ptu_driver/validation_service
-serviceAlive:       /ptu_driver/alive_service
+topicName:          /asr_flir_ptu_driver/state_cmd
+commandTopicName:   /asr_flir_ptu_driver/ptu_state
+serviceValidation:  /asr_flir_ptu_driver/validation_service
+serviceAlive:       /asr_flir_ptu_driver/alive_service
 margin:             0.01
 
