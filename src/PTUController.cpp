@@ -101,7 +101,7 @@ namespace asr_flir_ptu_controller
                 desired_tilt = values_for_validation.response.new_tilt;
             }
             else {
-                ROS_ERROR("Values for pan %f and tilt %f do not lie within the working area of the ptu, neither do the lie within the margin %f out of the working are"
+                ROS_ERROR("Values for pan %f and tilt %f do not lie within the working area of the ptu, neither do they lie within the margin %f out of the working area"
                           , pan_candidate, tilt_candidate, getMargin());
                 simpleActionServer.setAborted(simpleActionServerResult);
             }
