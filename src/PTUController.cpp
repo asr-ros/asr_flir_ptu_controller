@@ -78,6 +78,12 @@ namespace asr_flir_ptu_controller
 
     void PTUController::goalCB() {
         ROS_DEBUG("Goal callback");
+        if(!alive)
+        {
+            ROS_ERROR("The PTU does not responde. Please check the PTU-Node");
+            simpleActionServer.setAborted(simpleActionServerResult);
+        }
+
         target_joint = simpleActionServer.acceptNewGoal()->target_joint;
         double pan_candidate          = target_joint.position[0];
         double tilt_candidate         = target_joint.position[1];
@@ -121,30 +127,24 @@ namespace asr_flir_ptu_controller
 
         //Alive is a service client with steady connection to the supplying PTUNode. A check with "if" of this client indicates if the PTUNode instance is still alive or not
         //For more information please check http://wiki.ros.org/roscpp/Overview/Services point 2.1
-        if(!alive)
-        {
-            ROS_ERROR("The PTU does not responde. Please check the PTU-Node");
-            simpleActionServer.setAborted(simpleActionServerResult);
-        }
-        else {
-            seq_num++;
-            asr_flir_ptu_driver::State msg;
-            stateCommandMessage.position.clear();
-            stateCommandMessage.position.push_back(desired_pan);
-            stateCommandMessage.position.push_back(desired_tilt);
-            //Wenn panSpeed und tiltSpeed sowieso nur übergeben wird wenn beide = 0 sind, warum werden sie dann überhaupt übergeben?
-            stateCommandMessage.velocity.push_back(pan_speed);
-            stateCommandMessage.velocity.push_back(tilt_speed);
-            stateCommandMessage.header.stamp = ros::Time::now();
-            msg.state = stateCommandMessage;
-            msg.seq_num = seq_num;
-            msg.no_check_forbidden_area = false;
-            stateCommandPublisher.publish(msg);
-            ROS_DEBUG("pan:%f , tilt:%f, panSpeed:%f, tiltSpeed:%f", desired_pan, desired_tilt, pan_speed, tilt_speed);
-            count = 0;
-            double squared_sums = pow( desired_pan - current_pan , 2.0) + pow(desired_tilt - current_tilt, 2.0);
-            startDistance = sqrt(squared_sums);
-        }
+
+        seq_num++;
+        asr_flir_ptu_driver::State msg;
+        stateCommandMessage.position.clear();
+        stateCommandMessage.position.push_back(desired_pan);
+        stateCommandMessage.position.push_back(desired_tilt);
+        //Wenn panSpeed und tiltSpeed sowieso nur übergeben wird wenn beide = 0 sind, warum werden sie dann überhaupt übergeben?
+        stateCommandMessage.velocity.push_back(pan_speed);
+        stateCommandMessage.velocity.push_back(tilt_speed);
+        stateCommandMessage.header.stamp = ros::Time::now();
+        msg.state = stateCommandMessage;
+        msg.seq_num = seq_num;
+        msg.no_check_forbidden_area = false;
+        stateCommandPublisher.publish(msg);
+        ROS_DEBUG("pan:%f , tilt:%f, panSpeed:%f, tiltSpeed:%f", desired_pan, desired_tilt, pan_speed, tilt_speed);
+        count = 0;
+        double squared_sums = pow( desired_pan - current_pan , 2.0) + pow(desired_tilt - current_tilt, 2.0);
+        startDistance = sqrt(squared_sums);
     }
 
     void PTUController::preemptCB()  {
