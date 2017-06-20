@@ -24,7 +24,7 @@ namespace asr_flir_ptu_controller
         simpleActionServer.start();
         validate_client= nodeHandle.serviceClient<asr_flir_ptu_driver::Validate>(validation_service);
         alive = nodeHandle.serviceClient<std_srvs::Empty>(alive_service, true);
-        seq_num == 0;
+        seq_num = 0;
     }
 
     PTUController::~PTUController() {

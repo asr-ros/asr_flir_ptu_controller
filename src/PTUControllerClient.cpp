@@ -269,7 +269,7 @@ int main (int argc, char **argv)
 
         if (pans.size() != tilts.size() || pans.size() != waits.size())
             ROS_ERROR("ERROR in commands.yaml");
-        for(int i = 0; i < waits.size(); i++) {
+        for(unsigned int i = 0; i < waits.size(); i++) {
             ptu_controller->sendJoint(pans[i], tilts[i], waits[0]);
         }
     }
