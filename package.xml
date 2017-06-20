@@ -8,6 +8,8 @@
   <author>Patrick Schlosser</author>
   <maintainer email="asr-ros@lists.kit.edu">Pascal Meißner</maintainer>
   <license>BSD</license>
+  <url type="website">http://wiki.ros.org/asr_flir_ptu_controller</url>
+  
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>sensor_msgs</build_depend>
