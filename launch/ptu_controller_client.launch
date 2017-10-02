@@ -7,9 +7,9 @@
         <node name="PTUControllerClient" pkg="asr_flir_ptu_controller" type="PTUControllerClient" output="screen">
             <param name="actionServerName" value="ptu_controller_actionlib"/>
             <param name="checkValidation" value="false"/>
-            <rosparam file="$(find asr_flir_ptu_controller)/launch/commands.yaml"/>
-            <rosparam file="$(find asr_flir_ptu_controller)/launch/ptu_controller_settings.yaml"/>
-            <rosparam file="$(find asr_flir_ptu_controller)/launch/commands.yaml"/>
+            <rosparam file="$(find asr_flir_ptu_controller)/param/commands.yaml"/>
+            <rosparam file="$(find asr_flir_ptu_controller)/param/ptu_controller_settings.yaml"/>
+            <rosparam file="$(find asr_flir_ptu_controller)/param/commands.yaml"/>
             <rosparam param="testing" subst_value="True">$(arg testing)</rosparam>
             <rosparam param="testlog_filepath" subst_value="True">$(arg testlog_filepath)</rosparam>
         </node>
