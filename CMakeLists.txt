@@ -7,6 +7,7 @@ find_package(catkin REQUIRED COMPONENTS
     genmsg
     actionlib_msgs
     actionlib
+    asr_flir_ptu_driver
 )
 
 find_package(Boost REQUIRED COMPONENTS
@@ -14,7 +15,7 @@ find_package(Boost REQUIRED COMPONENTS
   thread
 )
 add_action_files(DIRECTORY action FILES PTUMovement.action)
-generate_messages(DEPENDENCIES actionlib_msgs sensor_msgs)
+generate_messages(DEPENDENCIES actionlib_msgs sensor_msgs asr_flir_ptu_driver)
 include_directories(include  ${catkin_INCLUDE_DIRS})
 
 catkin_package(
